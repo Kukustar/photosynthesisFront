@@ -14,6 +14,7 @@ class playGame extends Phaser.Scene{
         for(let j = 0; j < gameOptions.boardSize.cols; j++){
           let titlePosition = this.getTitlePosition(i, j);
 
+          console.info('test');
           const image = this.add.image(titlePosition.x, titlePosition.y, "emptytyle")
             .setInteractive();
 
