@@ -8,31 +8,28 @@ class playGame extends Phaser.Scene {
     super('PlayGame');
   }
   create() {
-    this.boardArray = [];
+    playGame.boardArray = [];
     for (let i = 0; i < gameOptions.boardSize.rows; i++) {
-      this.boardArray[i] = [];
+      playGame.boardArray[i] = [];
       for (let j = 0; j < gameOptions.boardSize.cols; j++) {
         const position = playGame.getTitlePosition(i, j);
         const image = this.add.image(position.x, position.y, 'emptytyle')
             .setInteractive();
 
-        image.on('pointerdown', () => {
-          this.addNewSprite(i, j);
-        });
+
+        image.on('pointerdown', () => playGame.addNewSprite(i, j));
+
 
         const tile = this.add.sprite(position.x, position.y, 'tiles', 0)
             .setInteractive();
 
         tile.visible = false;
 
-        tile.on('pointerdown', () => {
-          playGame.test(i, j);
-        });
+        tile.on('pointerdown', () => playGame.test(i, j));
 
-        this.boardArray[i][j] = {
+        playGame.boardArray[i][j] = {
           tileValue: 0,
           tileSprite: tile,
-
         };
       }
     }
@@ -45,15 +42,10 @@ class playGame extends Phaser.Scene {
 
     return new Phaser.Geom.Point(posX, posY);
   }
-  addNewSprite(i, j) {
-    this.boardArray[i][j].tileValue = 1;
-    this.boardArray[i][j].tileSprite.visible = true;
-    this.boardArray[i][j].tileSprite.setFrame(0);
-  }
-  addTile() {
-    this.boardArray[1][1].tileValue = 1;
-    this.boardArray[1][1].tileSprite.visible = true;
-    this.boardArray[1][1].tileSprite.setFrame(0);
+  static addNewSprite(i, j) {
+    playGame.boardArray[i][j].tileValue = 1;
+    playGame.boardArray[i][j].tileSprite.visible = true;
+    playGame.boardArray[i][j].tileSprite.setFrame(0);
   }
 }
 
