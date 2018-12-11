@@ -8,6 +8,8 @@ class playGame extends Phaser.Scene {
     super('PlayGame');
   }
   create() {
+    playGame.webSockets = new WebSocket('wss://echo.websocket.org/');
+    // playGame.webSockets.onopen = (evt) => playGame.sayHello(evt);
     playGame.boardArray = [];
     for (let i = 0; i < gameOptions.boardSize.rows; i++) {
       playGame.boardArray[i] = [];
@@ -34,6 +36,9 @@ class playGame extends Phaser.Scene {
       }
     }
   }
+  // static sayHello(evt) {
+  //   console.info(evt);
+  // }
   static getTitlePosition(row, col) {
     const posX = gameOptions.titleSpacing * (col + 1) + gameOptions.titleSize *
       (col + 0.5);
@@ -46,6 +51,15 @@ class playGame extends Phaser.Scene {
     playGame.boardArray[i][j].tileValue = 1;
     playGame.boardArray[i][j].tileSprite.visible = true;
     playGame.boardArray[i][j].tileSprite.setFrame(0);
+    const board = {};
+    for (let i = 0; i < gameOptions.boardSize.rows; i++) {
+      for (let j = 0; j < gameOptions.boardSize.cols; j++) {
+        const tmpKey = 'a' + (i+j);
+        board[tmpKey] = playGame.boardArray[i][j].tileValue;
+      }
+    }
+    // playGame.webSockets.send(JSON.stringify(playGame.boardArray));
+    playGame.webSockets.send(JSON.stringify(board));
   }
 }
 
