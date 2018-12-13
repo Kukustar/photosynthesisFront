@@ -1805,6 +1805,11 @@ phaser@^3.15.1:
   dependencies:
     eventemitter3 "^3.1.0"
 
+phoenix@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/phoenix/-/phoenix-1.4.0.tgz#9cec8dbd8cbc59ecd2147bc09ca8ceb56b860d75"
+  integrity sha512-+M7erjPRtrHM53Bc9sT/WSyNFOEhsAc48PBsex0R87hu0GhBRMNE2uAb8MT2gKtJmAYxv5Quaozh/PBuhO8tdQ==
+
 pify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
